@@ -1,0 +1,19 @@
+1:
+	O valor signed acaba sofrendo um cast para unsigned na hora da comparação, a codificação dos
+inteiros unsigned é diferente da condificação dos signed. A converção acaba tornando o valor negativo 
+maior do que o positivo
+
+2:
+	Vetores em C começam a partir de 0, o loop define 1 como o valor inicial para ser iterado.
+
+3:
+	O que está sendo avaliado na condição é o retorno da atribuição do valor 6 à variável x, que por
+padrão é sempre verdadeiro.
+
+4:
+	Números decimais são por padrão double em C, ao atribuir 0.1 para a variável raio temos uma
+perda de precisão, tornando a variável maior do que o valor esperado.
+
+5:
+	Há um ';' ao terminar a condição antes da abertura das chaves, o que torna da abertura ao
+fechamento das chaves um escopo que, neste caso, é redundante.
