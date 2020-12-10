@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ALG	"obol"	// Define qual algorítmo usar
+#define ALG	obol	// Define qual algorítmo usar
 
 // Vetor para ser ordenado
 int arr[] = { 3, 65536, -10000, 6, 7, 4, 5, 5, 18 };
@@ -49,8 +49,6 @@ void obol(int v[], int l) {
 
 	}
 
-	vprint(v, l);
-
 }
 
 
@@ -63,12 +61,9 @@ void obol(int v[], int l) {
 // Retorna 0, 2 se algorítmo não existir
 int main() {
 
-	int ret = 0;
-	if (strcmp(ALG, "obol") == 0) obol(arr, sizeof(arr)/sizeof(int));
-	else {
-		printf("Não há uma função para o algorítmo: %s\n", ALG);
-		exit(2);
-	}
+	ALG(arr, sizeof(arr)/sizeof(int));
+
+	vprint(arr, sizeof(arr)/sizeof(int));
 
 	return 0;
 
