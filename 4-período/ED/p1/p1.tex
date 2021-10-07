@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+
+% packages ---
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{decorations.markings}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{colormaps}
+%\usepgfplotslibrary{external}
+
+\usepackage{xfp}
+\usepackage{float}
+\usepackage{color}
+%\usepackage{times}
+\usepackage{empheq}
+\usepackage{comment}
+\usepackage{caption}
+\usepackage{xstring}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\usepackage{animate}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{indentfirst}
+
+\usepackage[portuguese]{babel}
+
+% packages ---
+
+
+% configuration ---
+
+\geometry{a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm}
+\onehalfspacing
+
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+\titlelabel{\thetitle.\quad}
+
+\DeclareCaptionType{equ}[Equation][]
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+
+\title{\textbf{Prova I}\\\large Estrutura de Dados\\\normalsize Professor Eduardo Takeo Ueda\\ Senac Santo Amaro}
+\author{Yuri Jorge Carrião Otofuji}
+\date{01/10/2021}
+
+\DeclareCaptionLabelSeparator{traço}{ - }
+\captionsetup{
+   labelsep=traço,
+   font={ stretch=2 }
+}
+
+% HyperLink SetUp
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+%\tikzexternalize
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+
+% configuration ---
+
+
+\begin{document}
+
+	% Cover
+	\pagenumbering{gobble}
+	\maketitle
+	
+	% Contents
+	\tableofcontents
+	
+	\newpage
+	
+	% Defining page numbering format
+	\pagenumbering{roman}
+	%\rfoot{\thepage}
+
+	\section{Implemente (em linguagem C) um algoritmo recursivo que inverta a ordem dos elementos de um vetor de inteiros.}
+	\lstinputlisting[style=customc]{1.c}
+
+	\newpage
+
+	\section{Usando a definição de notação O, prove que $log_{10}n$ é $O(lg(n))$ . (Lembre-se que $lg(n)$ denota o logaritmo de n na base 2).}
+	\begin{center}
+		$log(n) \leq clg(n)$ \\
+		$log(n) \leq c\frac{log(n)}{log(2)}$ \\
+		$n_0=2 \quad c=log(2)$
+	\end{center}
+
+	\newpage
+
+	\section{Implemente (em linguagem C) uma função que busca/procura, recursivamente, um valor em uma lista simplesmente encadeada/ligada.}
+	\lstinputlisting[style=customc]{3.c}
+
+	\newpage
+
+	\section{Implemente (em linguagem C), utilizando uma pilha, uma função que recebe uma sequência de caracteres e verifica se ela é um palíndromo, ou seja, se a \textit{string} é escrita da mesma maneira de frente para trás e de trás para frente (ignore espaços e pontos).}
+	\lstinputlisting[style=customc]{5.c}
+
+	\newpage
+
+	\section{Implemente (em linguagem C) uma fila utilizando duas pilhas. A fila deve realizar as operações usuais de enfileirar (\textit{enqueue}) e desenfileirar (\textit{dequeue}) elementos, assim como as pilhas devem efetuar as operações de empilhar (\textit{push}) e desempilhar (\textit{pop}).}
+	\lstinputlisting[style=customc]{5.c}
+
+\end{document}
