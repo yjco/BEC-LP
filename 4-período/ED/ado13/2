@@ -1,0 +1,104 @@
+0 = branco
+1 = cinza
+2 = preto
+
+  Estado inicial:
+A  B  C  D  E  F  G  H  I  J  K
+0  0  0  0  0  0  0  0  0  0  0
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -
+
+  Visita A:
+A  B  C  D  E  F  G  H  I  J  K
+1  0  0  0  0  0  0  0  0  0  0
+0  -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+
+A
+
+  Visita B, C e D:
+A  B  C  D  E  F  G  H  I  J  K  
+2  1  1  1  0  0  0  0  0  0  0
+0  4  6  13 -1 -1 -1 -1 -1 -1 -1
+
+A (0)
+A>B (4)
+A>C (6)
+A>D (13)
+
+  Vai para B e visita C, D e E:
+A  B  C  D  E  F  G  H  I  J  K  
+2  2  1  1  1  0  0  0  0  0  0
+0  4  6  13 14 -1 -1 -1 -1 -1 -1
+
+A (0)
+A>B (4)
+A>B>C (6)
+× A>B>D (13)
+A>B>E (14)
+A>C (6)
+A>D (13)
+
+  Volta para A, vai para C, visita E e F:
+A  B  C  D  E  F  G  H  I  J  K  
+2  2  2  1  1  0  0  0  0  0  0
+0  4  6  13 13 8  -1 -1 -1 -1 -1
+
+A (0)
+A>B (4)
+A>B>C (6)
+× A>B>D (13)
+A>B>E (14)
+A>C (6)
+× A>C>E (13)
+A>C>F (8)
+A>D (13)
+
+  Volta para A, vai para D, visita G:
+A  B  C  D  E  F  G  H  I  J  K  
+2  2  2  2  1  0  1  0  0  0  0
+0  4  6  13 13 8  15 -1 -1 -1 -1
+
+A (0)
+A>B (4)
+A>B>C (6)
+× A>B>D (13)
+A>B>E (14)
+A>C (6)
+× A>C>E (13)
+A>C>F (8)
+A>D (13)
+A>D>G (15)
+
+  Volta para A, vai para B, vai para C, vai para E, todos os vértices foram visitados:
+A  B  C  D  E  F  G  H  I  J  K
+2  2  2  2  2  0  1  0  0  0  0
+0  4  6  13 13 8  15 -1 -1 -1 -1
+
+A (0)
+A>B (4)
+A>B>C (6)
+× A>B>D (13)
+A>B>E (14)
+A>C (6)
+× A>C>E (13)
+A>C>F (8)
+A>D (13)
+A>D>G (15)
+
+  Volta para C, vai para F, visita H e I:
+A  B  C  D  E  F  G  H  I  J  K
+2  2  2  2  2  0  1  1  1  0  0
+0  4  6  13 13 8  15 9  11 -1 -1
+
+A (0)
+A>B (4)
+A>B>C (6)
+× A>B>D (13)
+A>B>E (14)
+A>C (6)
+× A>C>E (13)
+A>C>F (8)
+A>C>F>H (9)
+A>C>F>I (11)
+A>D (13)
+A>D>G (15)
+

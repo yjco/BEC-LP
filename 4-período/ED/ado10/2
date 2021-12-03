@@ -1,0 +1,18 @@
+(a)
+      a b c d e f g h
+    a 0 1 0 0 1 0 0 1     a > b > e > h
+    b 1 0 0 0 0 1 0 0     b > a > f
+    c 0 0 0 1 1 0 1 0     c > d > e > g
+    d 0 0 1 0 1 0 1 1     d > c > e > g > h
+    e 1 0 1 1 0 0 0 0     e > a > c > d
+    f 0 1 0 0 0 0 0 1     f > b > h
+    g 0 0 1 1 0 0 0 0     g > d > c
+    h 1 0 0 1 0 1 0 0     h > a > d > f
+
+(b)
+      a b c d e
+    a 0 1 0 1 0     a > b > d
+    b 0 0 0 0 1     b > e
+    c 1 0 0 1 0     c > a > d
+    d 1 1 0 0 1     d > b > e
+    e 0 0 0 0 0     e >

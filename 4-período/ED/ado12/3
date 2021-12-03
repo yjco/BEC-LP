@@ -1,0 +1,1 @@
+Iniciando em F, visitará C e H, então irá para C para visitar A, B, E e G. Voltará para F e irá para H, visitando D. Na sequência proposta, vemos D antes do E, entretanto e foi encontrado primeiro.

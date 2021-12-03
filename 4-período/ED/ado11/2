@@ -1,0 +1,41 @@
+0 = branco
+1 = cinza
+2 = preto
+
+  Estado inicial:
+A B C D E F G
+0 0 0 0 0 0 0
+
+  Visita A:
+A B C D E F G
+1 0 0 0 0 0 0
+
+  Visita B:
+A B C D E F G
+1 1 0 0 0 0 0
+
+  Visita C:
+A B C D E F G
+1 1 1 0 0 0 0
+
+  Todos os vértices adjacentes à C são 1||2:
+A B C D E F G
+1 1 2 0 0 0 0
+
+  Volta para B, visita D:
+A B C D E F G
+1 1 2 1 0 0 0
+
+  Todos os vértices adjacentes à D são 1||2:
+A B C D E F G
+1 1 2 2 0 0 0
+
+  Volta para B, todos os vértices adjacentes à B são 1||2:
+A B C D E F G
+1 2 2 2 0 0 0
+
+  Volta para A, todos os vértices adjacentes à A são 1||2:
+A B C D E F G
+2 2 2 2 0 0 0
+
+Neste grafo, a busca em profundidade iniciada no vértice A nunca visita os vértices E, F e G.

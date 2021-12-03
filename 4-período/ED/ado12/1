@@ -1,0 +1,58 @@
+0 = branco
+1 = cinza
+2 = preto
+
+  Estado inicial:
+A B C D E F G H I
+0 0 0 0 0 0 0 0 0
+. . . . . . . . .
+
+  Visita A e marca a distância:
+A B C D E F G H I
+1 0 0 0 0 0 0 0 0
+0 . . . . . . . .
+
+  Visita B, D e G e marca suas distâncias:
+A B C D E F G H I
+2 1 0 1 0 0 1 0 0
+0 1 . 1 . . 1 . .
+
+  Vai para B e visita C, E e H e marca suas distâncias:
+A B C D E F G H I
+2 2 1 1 1 0 1 1 0
+0 1 2 1 2 . 1 2 .
+
+  Volta para A e vai para D:
+A B C D E F G H I
+2 2 1 2 1 0 1 1 0
+0 1 2 1 2 . 1 2 .
+
+  Volta para A, vai para G e visita F e I e marca suas distâncias:
+A B C D E F G H I
+2 2 1 2 1 1 2 1 1
+0 1 2 1 2 3 1 2 3
+
+  Vai para B e depois para C:
+A B C D E F G H I
+2 2 2 2 1 1 2 1 1
+0 1 2 1 2 3 1 2 3
+
+  Volta para B e vai para E:
+A B C D E F G H I
+2 2 2 2 2 1 2 1 1
+0 1 2 1 2 3 1 2 3
+
+  Volta para B e vai para H:
+A B C D E F G H I
+2 2 2 2 2 1 2 2 1
+0 1 2 1 2 3 1 2 3
+
+  Volta para B, volta para A, vai para G e depois para F:
+A B C D E F G H I
+2 2 2 2 2 2 2 2 1
+0 1 2 1 2 3 1 2 3
+
+  Volta para G e vai para I:
+A B C D E F G H I
+2 2 2 2 2 2 2 2 2
+0 1 2 1 2 3 1 2 3

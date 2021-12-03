@@ -1,0 +1,135 @@
+0 = branco
+1 = cinza
+2 = preto
+
+  Estado inicial:
+A B C D E F G H I J K L M N
+0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+  Visita A:
+A B C D E F G H I J K L M N
+1 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+  Visita D:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 0 0 0 0 0 0
+
+  Visita I:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 0 0 0 0
+
+  Visita K:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 0 0 0
+
+  Visita N:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 0 0 1
+
+  Visita M:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 0 1 1
+
+  Saída encontrada, o algorítmo definido pela pessoa termina neste ponto. Árvore gerada:
+
+    ___________(A)___________
+   /            |            \
+   B            C     ______(D)_____
+                     /       |      \
+                     G       H    _(I)_
+                                 /     \
+                                 J    (K)
+                                     /   \
+                                    (L)  N
+                                     |
+                                     M
+
+  A partir deste ponto não há uma condição definida para escolha do próximo vértice a ser visitado, então haverá várias formas de prosseguir. Ainda sim, continuando...
+
+  Visita L:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 1 1 1
+
+  Todos os vértices adjacentes à L são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 2 1 1
+
+  Volta para M, todos os vértices adjacentes à M são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 2 2 1
+
+  Volta para N, todos os vértices adjacentes à N são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 0 1 2 2 2
+
+  Volta para K, visita J:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 1 1 2 2 2
+
+  Todos os vértices adjacentes à J são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 2 1 2 2 2
+
+  Volta para K, todos os vértices adjacentes à K são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 0 1 2 2 2 2 2
+
+  Volta para I, visita H:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 0 1 1 2 2 2 2 2
+
+  Visita G:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 1 1 1 2 2 2 2 2
+
+  Todos os vértices adjacentes à G são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 2 1 1 2 2 2 2 2
+
+  Volta para H, todos os vértices adjacentes à H são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 2 2 1 2 2 2 2 2
+
+  Volta para I, todos os vértices adjacentes à I são 1||2:
+A B C D E F G H I J K L M N
+1 0 0 1 0 0 2 2 2 2 2 2 2 2
+
+  Volta para D, visita C:
+A B C D E F G H I J K L M N
+1 0 1 1 0 0 2 2 2 2 2 2 2 2
+
+  Visita B:
+A B C D E F G H I J K L M N
+1 1 1 1 0 0 2 2 2 2 2 2 2 2
+
+  Visita F:
+A B C D E F G H I J K L M N
+1 1 1 1 0 1 2 2 2 2 2 2 2 2
+
+  Visita E:
+A B C D E F G H I J K L M N
+1 1 1 1 1 1 2 2 2 2 2 2 2 2
+
+  Todos os vértices adjacentes à E são 1||2:
+A B C D E F G H I J K L M N
+1 1 1 1 2 1 2 2 2 2 2 2 2 2
+
+  Volta para F, todos os vértices adjacentes à F são 1||2:
+A B C D E F G H I J K L M N
+1 1 1 1 2 2 2 2 2 2 2 2 2 2
+
+  Volta para B, todos os vértices adjacentes à B são 1||2:
+A B C D E F G H I J K L M N
+1 2 1 1 2 2 2 2 2 2 2 2 2 2
+
+  Volta para C, todos os vértices adjacentes à C são 1||2:
+A B C D E F G H I J K L M N
+1 2 2 1 2 2 2 2 2 2 2 2 2 2
+
+  Volta para D, todos os vértices adjacentes à D são 1||2:
+A B C D E F G H I J K L M N
+1 2 2 2 2 2 2 2 2 2 2 2 2 2
+
+  Volta para A, todos os vértices adjacentes à A são 1||2:
+A B C D E F G H I J K L M N
+2 2 2 2 2 2 2 2 2 2 2 2 2 2

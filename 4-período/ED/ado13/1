@@ -1,0 +1,164 @@
+0 = branco
+1 = cinza
+2 = preto
+
+A = gcc-4.4
+B = binutils
+C = cpp-4.4
+D = libgomp1
+E = gas
+F = elf-binutils
+G = libmpfr1ldbl
+H = gcc-4.4-base
+I = libmpfr1
+J = libgmp3c2
+K = libgmp3
+
+  Estado inicial:
+  A B C D E F G H I J K
+f 0 0 0 0 0 0 0 0 0 0 0
+d . . . . . . . . . . .
+L . . . . . . . . . . .
+
+  Visita A, marca distância:
+  A B C D E F G H I J K
+f 1 0 0 0 0 0 0 0 0 0 0
+d 0 . . . . . . . . . .
+L . . . . . . . . . . .
+
+  Visita B, marca distância:
+  A B C D E F G H I J K
+f 1 1 0 0 0 0 0 0 0 0 0
+d 0 1 . . . . . . . . .
+L . . . . . . . . . . .
+
+  Visita E, marca distância:
+  A B C D E F G H I J K
+f 1 1 0 0 1 0 0 0 0 0 0
+d 0 1 . . 2 . . . . . .
+L . . . . . . . . . . .
+
+  E não possui arestas:
+  A B C D E F G H I J K
+f 1 1 0 0 2 0 0 0 0 0 0
+d 0 1 . . 2 . . . . . .
+L E . . . . . . . . . .
+
+  Volta pra B, visita F e marca sua distância:
+  A B C D E F G H I J K
+f 1 1 0 0 2 1 0 0 0 0 0
+d 0 1 . . 2 2 . . . . .
+L E . . . . . . . . . .
+
+  F não possui arestas:
+  A B C D E F G H I J K
+f 1 1 0 0 2 2 0 0 0 0 0
+d 0 1 . . 2 2 . . . . .
+L E F . . . . . . . . .
+
+  Volta para B, todos os seus vértices foram visitados:
+  A B C D E F G H I J K
+f 1 2 0 0 2 2 0 0 0 0 0
+d 0 1 . . 2 2 . . . . .
+L E F B . . . . . . . .
+
+  Volta para A, visita C e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 0 0 0 0 0
+d 0 1 1 . 2 2 . . . . .
+L E F B . . . . . . . .
+
+  Visita G e marca a sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 0 0 0
+d 0 1 1 . 2 2 2 . . . .
+L E F B . . . . . . . .
+
+  Visita I e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 1 0 0
+d 0 1 1 . 2 2 2 . 3 . .
+L E F B . . . . . . . .
+
+  I não possui arestas:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 2 0 0
+d 0 1 1 . 2 2 2 . 3 . .
+L E F B I . . . . . . .
+
+  Volta para G, visita J e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 2 1 0
+d 0 1 1 . 2 2 2 . 3 3 .
+L E F B I . . . . . . .
+
+  Visita K e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 2 1 1
+d 0 1 1 . 2 2 2 . 3 3 4
+L E F B I . . . . . . .
+
+  K não possui arestas:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 2 1 2
+d 0 1 1 . 2 2 2 . 3 3 4
+L E F B I K . . . . . .
+
+  Volta para J, todos os vértices de J foram visitados:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 1 0 2 2 2
+d 0 1 1 . 2 2 2 . 3 3 4
+L E F B I K J . . . . .
+
+  Volta para G, todos os vértices de G foram visitados:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 2 0 2 2 2
+d 0 1 1 . 2 2 2 . 3 3 4
+L E F B I K J G . . . .
+
+  Volta para C, visita H e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 2 1 2 2 2
+d 0 1 1 . 2 2 2 2 3 3 4
+L E F B I K J G . . . .
+
+  H não possui arestas:
+  A B C D E F G H I J K
+f 1 2 1 0 2 2 2 2 2 2 2
+d 0 1 1 . 2 2 2 2 3 3 4
+L E F B I K J G H . . .
+
+  Volta para C, todos seus vértices foram visitados:
+  A B C D E F G H I J K
+f 1 2 2 0 2 2 2 2 2 2 2
+d 0 1 1 . 2 2 2 2 3 3 4
+L E F B I K J G H C . .
+
+  Volta para A, visita D e marca sua distância:
+  A B C D E F G H I J K
+f 1 2 2 1 2 2 2 2 2 2 2
+d 0 1 1 1 2 2 2 2 3 3 4
+L E F B I K J G H C . .
+
+  Todos os vértices de D foram visitados:
+  A B C D E F G H I J K
+f 1 2 2 2 2 2 2 2 2 2 2
+d 0 1 1 1 2 2 2 2 3 3 4
+L E F B I K J G H C D .
+
+  Volta para A, todos os seus vértices foram visitados:
+  A B C D E F G H I J K
+f 2 2 2 2 2 2 2 2 2 2 2
+d 0 1 1 1 2 2 2 2 3 3 4
+L E F B I K J G H C D A
+
+  Resultado final:
+
+ +---+-+---------+
+ |   | | +-----+ | 
+ |   V V |     V V
+ A>D C>H G>J>K I B F E
+   | | ^ ^ ^
+   | | | | |
+   | +---+-+
+   +---+
