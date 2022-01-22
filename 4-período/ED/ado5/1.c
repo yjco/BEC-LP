@@ -3,112 +3,105 @@
 #include <string.h>
 
 
-typedef struct item {
+typedef struct node {
 	char c;
-	struct item* down;
-} ITEM;
+	struct node* down;
+} NODE;
 
 typedef struct stack {
-	ITEM* top;
+	NODE* top;
 } STACK;
 
 
 void init(STACK* s) {
-	s -> top = malloc(sizeof(ITEM));
-	s -> top = NULL;
+	s->top = malloc(sizeof(NODE));
+	s->top = NULL;
 }
 
 void put(STACK* s, char c) {
-	ITEM* i = malloc(sizeof(ITEM));
-	i -> c = c;
-	i -> down = s -> top;
-	s -> top = i;
+	NODE* i = malloc(sizeof(NODE));
+	i->c = c;
+	i->down = s->top;
+	s->top = i;
 }
 
-ITEM* pop(STACK* s) {
-	ITEM* i = s -> top -> down;
-	s -> top = s -> top -> down;
+NODE* pop(STACK* s) {
+	NODE* i = s->top->down;
+	s->top = s->top->down;
 	return i;
 }
 
-char srev(ITEM* i) {
+char srev(NODE* i) {
 	if (i -> down == NULL) {
-		return i -> c;
+		return i->c;
 	} else {
-		printf("%c ", srev(i -> down));
-		return i -> c;
+		printf("%c ", srev(i->down));
+		return i->c;
 	}
 }
 
 void show(STACK* s, int rev) {
-	ITEM* i = s -> top;
+	NODE* i = s->top;
 	if (i == NULL) {
 		printf("\n");
 		return;
 	}
 	if (rev) {
-		printf("%c ", srev(s -> top));
+		printf("%c ", srev(s->top));
 	} else {
 		while (i != NULL) {
-			printf("%c ", i -> c);
-			i = i -> down;
+			printf("%c ", i->c);
+			i = i->down;
 		}
 	}
 	printf("\n");
 }
 
-
-int main() {
+int format(char* string) {
 
 	STACK stack;
 	init(&stack);
 
-	char c;
-	while (1) {
-		printf(": ");
-		show(&stack, 1);
-		scanf("%c", &c);
-		getchar();
+	for (char c = *string; c != '\0'; c = *(++string)) { 
+
+		if (c != '(' && c != ')' &&
+		    c != '[' && c != ']' &&
+		    c != '{' && c != '}' ) 
+			continue;
+
 		if (stack.top != NULL) {
-			switch ((stack.top) -> c) {
+			switch (stack.top->c) {
 				case '(' :
-					if (c == ']' || c == '}') {
-						printf("Mal formada! Ignorando...\n");
-					} else if (c == ')') {
-						pop(&stack);
-					} else {
-						put(&stack, c);
-					}
+					if (c == ']' || c == '}') return 0;
+					else if (c == ')') pop(&stack);
+					else put(&stack, c);
 					continue;
 				case '[' :
-					if (c == ')' || c == '}') {
-						printf("Mal formada! Ignorando...\n");
-						continue;
-					} else if (c == ']') {
-						pop(&stack);
-					} else {
-						put(&stack, c);
-					}
+					if (c == ')' || c == '}') return 0;
+					else if (c == ']') pop(&stack);
+					else put(&stack, c);
 					continue;
 				case '{' :
-					if (c == ']' || c == ')') {
-						printf("Mal formada! Ignorando...\n");
-						continue;
-					} else if (c == '}') {
-						pop(&stack);
-					} else {
-						put(&stack, c);
-					}
+					if (c == ']' || c == ')') return 0;
+					else if (c == '}') pop(&stack);
+					else put(&stack, c);
 					continue;
 				default :
-					printf("Mal formada! Ignorando...");
-					continue;
+					return 0;
 			}
 		}
 		if (c == '(' || c == '[' || c == '{') put(&stack, c);
-		else if (c == 'E') exit(0);
+
 	}
 
-	return 0;
+	return 1;
+
+}
+
+
+int main() {
+
+	char* string = "({{}])";
+	printf("%s\n", (format(string)) ? "TRUE" : "FALSE");
 
 }

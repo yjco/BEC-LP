@@ -53,8 +53,33 @@ void insert(TREE* t, int i) {
 	t -> root = iaux(t -> root, a);
 }
 
-int naux(NODE* n) { return (n == NULL) ? 0 : 1 + naux(n -> left) + naux(n -> right); }
-int nnode(TREE* t) { return naux(t -> root); }
+int haux(NODE* n, int h) {
+
+	if (n == NULL) return h;
+
+	h++;
+	int hl = haux(n -> left, h);
+	int hr = haux(n -> right, h);
+
+	return (hl > hr) ? hl : hr;
+
+}
+int height(TREE* t) { haux(t -> root, 0)-1; }
+
+
+void maux(NODE* n, int* i) {
+	if (n != NULL) {
+		if (n->val % 7 == 0) (*i)++;
+		maux(n -> left, i);
+		maux(n -> right, i);
+	}
+}
+
+int mseven(TREE* t) {
+	int i = 0;
+	maux(t -> root, &i);
+	return i;
+}
 
 
 int main() {
@@ -67,11 +92,10 @@ int main() {
 	insert(&tree, 16);
 	insert(&tree, 17);
 	insert(&tree, 14);
-	insert(&tree, 5);
+	insert(&tree, 70);
 
 	show(&tree);
-
-	printf("%d\n", nnode(&tree));
+	printf("%d\n", mseven(&tree));
 
 	return 0;
 

@@ -53,18 +53,8 @@ void insert(TREE* t, int i) {
 	t -> root = iaux(t -> root, a);
 }
 
-int aaux(NODE* n) {
-	if (n == NULL || n->left == NULL || n->right == NULL) return 1;
-	if (n->left->val > n->right->val) {
-		return 0;
-	} else {
-		return aaux(n -> left) && aaux(n -> right);
-	}
-}
-
-int abbt(TREE* t) {
-	return aaux(t -> root);
-}
+int aaux(NODE* n) { return (n == NULL || n->left == NULL || n->right == NULL) ? 1 : (n->left->val > n->right->val) ? 0 : aaux(n -> left) && aaux(n -> right); }
+int abbt(TREE* t) { return aaux(t -> root); }
 
 
 int main() {

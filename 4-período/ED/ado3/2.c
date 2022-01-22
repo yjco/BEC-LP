@@ -50,7 +50,22 @@ void insert(LIST* l, int val) {
 
 }
 
-NODE* find(NODE* n, int val) {return (n == NULL) ? NULL : (n->val == val) ? n : find(n->next, val);}
+int cmp(LIST* l, LIST* t) {
+
+	NODE* n = l->begin;
+	NODE* m = t->begin; 
+	
+	while (n != NULL && m != NULL) {
+		if (n->val != m->val) return 0;
+		n = n->next;
+		m = m->next;
+	}
+
+	if (n != NULL || m != NULL) return 0;
+
+	return 1;
+
+}
 
 void show(LIST* list) {
 	for (NODE* n = list->begin; n != NULL; n = n->next) printf("%d ", n->val);
@@ -60,13 +75,22 @@ void show(LIST* list) {
 
 int main() {
 
-	LIST list = init();
-	insert(&list, 1);
-	insert(&list, 2);
-	insert(&list, 4);
-	insert(&list, 3);
-	show(&list);
+	LIST alist = init();
+	insert(&alist, 1);
+	insert(&alist, 2);
+	insert(&alist, 4);
+	insert(&alist, 3);
+	printf("A: ");
+	show(&alist);
 
-	printf("%s\n", (find(list.begin, 2) != NULL) ? "FOUND" : "NOT IN THE LIST");
+	LIST blist = init();
+	insert(&blist, 1);
+	insert(&blist, 2);
+	insert(&blist, 4);
+	insert(&blist, 5);
+	printf("B: ");
+	show(&blist);
+
+	printf("A %c= B\n", (cmp(&alist, &blist)) ? '=' : '!');
 
 }

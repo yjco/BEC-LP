@@ -50,7 +50,19 @@ void insert(LIST* l, int val) {
 
 }
 
-NODE* find(NODE* n, int val) {return (n == NULL) ? NULL : (n->val == val) ? n : find(n->next, val);}
+NODE* mid(LIST* l) {
+
+	NODE* n = l->begin;
+	while (n->next != NULL) n = n->next;
+
+	int m = (n - l->begin) / 2;
+
+	n = l->begin;
+	while (m-- > 0) n = n->next;
+
+	return n;
+
+}
 
 void show(LIST* list) {
 	for (NODE* n = list->begin; n != NULL; n = n->next) printf("%d ", n->val);
@@ -61,12 +73,12 @@ void show(LIST* list) {
 int main() {
 
 	LIST list = init();
-	insert(&list, 1);
 	insert(&list, 2);
+	insert(&list, 1);
 	insert(&list, 4);
 	insert(&list, 3);
 	show(&list);
 
-	printf("%s\n", (find(list.begin, 2) != NULL) ? "FOUND" : "NOT IN THE LIST");
+	printf("MID VALUE: %d\n", mid(&list)->val);
 
 }

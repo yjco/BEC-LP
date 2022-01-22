@@ -3,77 +3,74 @@
 
 
 typedef struct node {
-	int i;
+	int val;
 	struct node* next;
 } NODE;
 
-typedef struct list {
-	int set;
+typedef struct query {
 	NODE* head;
-} LIST;
+} QUERY;
 
 
-void init(LIST* l) {
-	l -> head = malloc(sizeof(NODE));
-	l -> head -> next = l -> head;
-	l -> set = 0;
+QUERY init() {
+	QUERY* q = malloc(sizeof(QUERY));
+	q->head = NULL;
+	return *q;
 }
 
-void show(LIST* l) {
-	if (l -> set == 0) return;
-	NODE* n = l -> head;
-	while (n -> next != l -> head) {
-		printf("%d ", n -> i);
-		n = n -> next;
-	}
-	printf("%d\n", n -> i);
-}
-
-void fura(LIST* l, int i) {
+void add(QUERY* q, int val) {
 
 	NODE* m = malloc(sizeof(NODE));
-	m -> i = i;
-	m -> next = l -> head;
+	m->next = q->head;
+	m->val = val;
 
-	NODE* n = l -> head;
-	while (n -> next != l -> head) n = n -> next;
-	n -> next = m;
-	l -> head = m;
-
-}
-
-void add(LIST* l, int i) {
-	NODE* m = malloc(sizeof(NODE));
-	m -> i = i;
-	m -> next = l -> head;
-
-	if (l -> set == 0) {
-		l -> set = 1;
-		fura(l, i);
-		l -> head -> next = l -> head;
+	if (q->head == NULL) {
+		m->next = m;
+		q->head = m;
 		return;
 	}
 
-	NODE* n = l -> head;
-	while (n -> next != l -> head) n = n -> next;
-	n -> next = m;
+	NODE* n = q->head;
+	while (n->next != q->head) n = n->next;
+	n->next = m;
+
 }
+
+void show(QUERY* q) {
+	if (q->head == NULL) return;
+	NODE* n = q->head;
+	do {
+		printf("%d ", n->val);
+		n = n->next;
+	} while (n != q->head);
+	printf("\n");
+}
+
+void fura(QUERY* q, int val) {
+
+	NODE* m = malloc(sizeof(NODE));
+	m->next = q->head->next;
+	m->val = q->head->val;
+
+	q->head->next = m;
+	q->head->val = val;
+
+}
+
 
 int main() {
 
-	LIST list;
-	init(&list);
+	QUERY query = init();
 
-	show(&list);
-	add(&list, 10);
-	show(&list);
-	add(&list, 20);
-	show(&list);
-	add(&list, 30);
-	show(&list);
+	add(&query, 10);
+	show(&query);
+	add(&query, 20);
+	show(&query);
+	add(&query, 30);
+	show(&query);
 
-	fura(&list, 55);
-	show(&list);
+	fura(&query, 55);
+	show(&query);
 
 	return 0;
 

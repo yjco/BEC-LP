@@ -1,0 +1,55 @@
+Iniciando em A
+
+Visita B e C
+
+ A>B : 6
+ A>C : 4
+
+Vai para B
+
+Visita D e E
+
+ A>B>D : 11
+ A>B>E : 9
+
+Vai para C
+
+Visita D e F
+
+ A>C>D : 6
+ A>C>F : 14
+
+Remove A>B>D por ser mais longo que A>C>D
+
+Rotas:
+
+ A>B>E : 9
+ A>C>D : 6
+ A>C>F : 14
+
+Volta para A, vai para B, vai para E, visita G e D
+
+ A>B>E>G : 11
+ A>B>E>D : 19
+
+Remove A>B>E>D por ser mais longo que A>C>D
+
+Rotas:
+
+ A>C>D : 6
+ A>C>F : 14
+ A>B>E>G : 11
+
+Volta para B, volta para A, vai para C, vai para D, visita G e H
+
+ A>C>D>G : 13
+ A>C>D>H : 15
+
+Remove A>C>D>G por ser mais longo que A>B>E>G
+
+Rotas:
+
+ A>B>E>G : 11
+ A>C>D>H : 15
+
+H encontrado, rota final: A>C>D>H : 15

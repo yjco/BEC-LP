@@ -50,10 +50,22 @@ void insert(LIST* l, int val) {
 
 }
 
-NODE* find(NODE* n, int val) {return (n == NULL) ? NULL : (n->val == val) ? n : find(n->next, val);}
+NODE* invert(LIST* l, NODE* n) {
+
+	if (n->next->next == NULL) { 
+		l->begin = n->next;
+		n->next->next = n;
+		return n;
+	}
+
+	invert(l, n->next)->next = n;
+	n->next = NULL;
+	return n;
+
+}
 
 void show(LIST* list) {
-	for (NODE* n = list->begin; n != NULL; n = n->next) printf("%d ", n->val);
+	for (NODE* n = list->begin; n != NULL; n = n->next) printf("%d ", n->val); 
 	printf("\n");
 }
 
@@ -67,6 +79,7 @@ int main() {
 	insert(&list, 3);
 	show(&list);
 
-	printf("%s\n", (find(list.begin, 2) != NULL) ? "FOUND" : "NOT IN THE LIST");
+	invert(&list, list.begin);
+	show(&list);
 
 }

@@ -19,10 +19,6 @@ LIST init() {
 	return *l;
 }
 
-void reinit(LIST* l) {
-	*l = init();
-}
-
 void insert(LIST* l, int val) {
 
 	NODE* new = malloc(sizeof(NODE));
@@ -41,28 +37,6 @@ void insert(LIST* l, int val) {
 	new->prev = l->begin->prev;
 	l->begin->prev->next = new;
 	l->begin->prev = new;
-
-}
-
-void delete(LIST* l, int val) {
-
-	if (l->begin == NULL) return;
-	if (l->begin->val == val) {
-		l->begin->next->prev = l->begin->prev;
-		l->begin->prev->next = l->begin->next;
-		l->begin = l->begin->next;
-		return;
-	}
-
-	NODE* n = l->begin;
-	do {
-		if (n->val == val) {
-			n->prev->next = n->next;
-			n->next->prev = n->prev;
-			break;	
-		}
-		n = n->next;
-	} while (n != l->begin);
 
 }
 
@@ -104,33 +78,64 @@ void insertSort(LIST* l, int val) {
 
 }
 
-NODE* find(LIST* l, int val) {
+int contains(LIST* l, int val) {
+
+	if (l->begin == NULL) return 0;
 
 	NODE* n = l->begin;
 	do {
-		if (n->val == val) return n;
+		if (n->val == val) return 1;
 		n = n->next;
 	} while (n != l->begin);
-	return NULL;
+	return 0;
 
 }
 
-void swap(LIST* l, int val, int new) {
+LIST lunion(LIST* l, LIST* r, int unique) {
+
+	LIST u = init();
+	if (l == r) return u;
 
 	NODE* n = l->begin;
 	do {
-		if (n->val == val) { 
-			n->val = new;
-			return;
+		if (unique && contains(&u, n->val)) { 
+			n = n->next;
+			continue;
 		}
+		insert(&u, n->val);
 		n = n->next;
 	} while (n != l->begin);
+
+	n = r->begin;
+	do {
+		if (unique && contains(&u, n->val)) { 
+			n = n->next;
+			continue;
+		}
+		insert(&u, n->val);
+		n = n->next;
+	} while (n != r->begin);
+
+	return u;
+
+}
+
+LIST linter(LIST* l, LIST* r) {
+
+	LIST u = init();
+	if (l == r) return u;
+
+	NODE* n = l->begin;
+	do {
+		if (contains(r, n->val)) insert(&u, n->val);
+		n = n->next;
+	} while (n != l->begin);
+
+	return u;
 
 }
 
 void show(LIST* l) {
-
-	if (l->begin == NULL) return;
 
 	NODE* n = l->begin;
 	do {
@@ -152,16 +157,18 @@ int main() {
 	insert(&list, 1);
 	printf("list: "); show(&list);
 
-	delete(&list, 3);
-	printf("list: "); show(&list);
+	LIST rist = init();
+	insert(&rist, 6);
+	insert(&rist, 4);
+	insert(&rist, 9);
+	insert(&rist, 8);
+	insert(&rist, 2);
+	printf("rist: "); show(&rist);
 
-	NODE* n = find(&list, 4);
-	printf("node: %d\n", n->val);
+	LIST u = lunion(&list, &rist, 1);
+	printf("union: "); show(&u);
 
-	swap(&list, 4, 8);
-	printf("nval: "); show(&list);
-
-	reinit(&list);
-	printf("reinit: "); show(&list); printf("\n");
+	u = linter(&list, &rist);
+	printf("inter: "); show(&u);
 
 }

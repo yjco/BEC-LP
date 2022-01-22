@@ -53,9 +53,32 @@ void insert(TREE* t, int i) {
 	t -> root = iaux(t -> root, a);
 }
 
-int naux(NODE* n) { return (n == NULL) ? 0 : 1 + naux(n -> left) + naux(n -> right); }
-int nnode(TREE* t) { return naux(t -> root); }
+int haux(NODE* n, int h) {
 
+	if (n == NULL) return h;
+
+	h++;
+	int hl = haux(n -> left, h);
+	int hr = haux(n -> right, h);
+
+	return (hl > hr) ? hl : hr;
+
+}
+int height(TREE* t) { return haux(t -> root, 0)-1; }
+
+int avlt(NODE* n) {
+	int l = -1, lh = 0, r = -1, rh = 0;
+	if (n->left != NULL) {
+		l = avlt(n->left);
+		lh = haux(n->left, 0);
+	}
+	if (n->right != NULL) {
+		r = avlt(n->right);
+		rh = haux(n->right, 0);
+	}
+	int f = lh - rh;
+	return ((f != 1 && f != 0 && f != -1) || l == 0 || r == 0) ? 0 : 1;
+}
 
 int main() {
 
@@ -71,7 +94,18 @@ int main() {
 
 	show(&tree);
 
-	printf("%d\n", nnode(&tree));
+	printf("%s\n", (avlt(tree.root) ? "TRUE" : "FALSE"));
+
+	TREE avl;
+	init(&avl);
+
+	insert(&avl, 10);
+	insert(&avl, 5);
+	insert(&avl, 16);
+
+	show(&avl);
+
+	printf("%s\n", (avlt(avl.root) ? "TRUE" : "FALSE"));
 
 	return 0;
 

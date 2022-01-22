@@ -77,6 +77,14 @@ int meta(int n, int r) {
 	return (n == 0 || n == 1) ? n : meta(n-1+r, r) + meta(n-2+r, r);
 }
 
+/** ALGORÍTMO DE EUCLIDES
+ * x = núemro inteiro
+ * y = outro número inteiro
+ */
+int reuclides(int x, int y) {
+	return (x == 0) ? y : (y == 0) ? x : reuclides((x > y) ? x % y : y % x, (x > y) ? y : x);
+}
+
 int main() {
 	return 0;
 }

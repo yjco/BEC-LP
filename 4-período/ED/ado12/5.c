@@ -1,3 +1,5 @@
+/* RESPOSTA ERRADA */
+
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +21,7 @@ int main() {
 	for (int i = 0; i < R; i++) *(fights+i) = (int*)malloc(sizeof(int) * 2);
 
 	int b = 0, m = 0;
-	for (int i = 0, f = -1; i < N && b < R && m < R; i++) *(*(fights+((even(*(fighters+i)))?b++:m++))+(even(*(fighters+i)))) = *(fighters+i);
+	for (int i = 0, f = -1; i < N && b < R && m < R; i++, *(*(fights+((even(*(fighters+i)))?b++:m++))+(even(*(fighters+i)))) = *(fighters+i));
 
 	int pairs = (b < m) ? b : m;
 	if (!pairs) {
