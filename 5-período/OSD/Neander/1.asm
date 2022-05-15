@@ -1,0 +1,10 @@
+ORG 4
+LDI 0
+
+LDA 0
+ADD 1
+ADD 2
+STA 3
+
+HLT
+END 0

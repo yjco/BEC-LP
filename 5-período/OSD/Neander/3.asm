@@ -1,0 +1,12 @@
+ORG 0
+LDI 0
+
+IN 0
+STA 80
+IN 0
+ADD 80
+STA 80
+
+OUT 0
+HLT
+END 0
